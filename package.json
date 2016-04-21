@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  "devDependencies": {
-    "babel-core": "5.8.*",
-    "bootstrap": "^3.3.6",
-    "babel-loader": "5.3.*",
-    "webpack": "1.12.*"
-  },
   "scripts": {
     "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js"
   },
@@ -22,16 +16,17 @@
     "url": "https://github.com/caraclarke/imdb-movie-finder/issues"
   },
   "homepage": "https://github.com/caraclarke/imdb-movie-finder#readme",
+  "devDependencies": {
+    "browserify": "*",
+    "gulp": "*",
+    "flux": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*",
+    "object-assign": "*"
+  },
   "dependencies": {
-    "babel-preset-react": "^6.3.13",
-    "babelify": "^7.2.0",
-    "email-validator": "^1.0.4",
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6",
-    "react-router": "^2.0.0",
-    "reflux": "^0.4.0",
-    "watchify": "^3.7.0",
-    "webpack-dev-server": "^1.14.1",
-    "whatwg-fetch": "^0.11.0"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.0"
   }
 }
