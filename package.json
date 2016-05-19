@@ -1,7 +1,7 @@
 {
   "name": "imdb-movie-finder",
   "version": "1.0.0",
-  "description": "",
+  "description": "Movie Finder using OMDB API",
   "main": "main.js",
   "scripts": {
     "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js"
@@ -25,7 +25,6 @@
     "object-assign": "*"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0"
