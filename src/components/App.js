@@ -27,7 +27,7 @@ var App = React.createClass({
     if (this.state.movies == '') {
       var movieResults = '';
     } else {
-      var movieResults = <MovieResults />;
+      var movieResults = <MovieResults movies={this.state.movies} />;
     }
 
     return (
