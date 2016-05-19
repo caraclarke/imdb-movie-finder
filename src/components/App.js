@@ -3,17 +3,17 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
-// var getAppState = function() {
-//   return (
-//
-//   )
-// }
+function getAppState(){
+	return {
+	//	movies: AppStore.getMovieResults()
+    movies: 'face'
+	}
+}
 
 var App = React.createClass({
-
-  // getInitialState: function() {
-  //   return getAppState()
-  // },
+	getInitialState: function(){
+		return getAppState();
+	},
 
   componentDidMount: function() {
     AppStore.addChangeListener(this._onChange)

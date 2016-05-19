@@ -2,7 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
-var AppAPi = require('../utils/appAPI');
+var AppAPI = require('../utils/appAPI');
 
 var CHANGE_EVENT = 'change';
 
@@ -27,6 +27,7 @@ AppDispatcher.register(function(payload) {
 
   switch(action.actionType) {
     case AppConstants.SEARCH_MOVIES:
+      AppAPI.searchMovies(action.movie);
       AppStore.emit(CHANGE_EVENT);
       break;
   }
