@@ -23,7 +23,6 @@ var App = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.movies);
     return (
       <div>
         <SearchForm />
