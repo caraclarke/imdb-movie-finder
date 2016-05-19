@@ -19757,6 +19757,19 @@ var AppStore = assign({}, EventEmitter.prototype, {
   }
 });
 
+AppDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.actionType) {
+    // switch statement check out which action was called and then do whatever we need to do
+    // depends on action type
+  }
+
+  return true;
+});
+
+module.exports = AppStore;
+
 },{"../constants/AppConstants":166,"../dispatcher/AppDispatcher":167,"../utils/appAPI":170,"events":1,"object-assign":6}],170:[function(require,module,exports){
 
 },{}]},{},[168]);

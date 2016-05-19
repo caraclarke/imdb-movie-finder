@@ -21,3 +21,16 @@ var AppStore = assign({}, EventEmitter.prototype, {
     this.removeListener('change', cb);
   }
 });
+
+AppDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.actionType) {
+    // switch statement check out which action was called and then do whatever we need to do
+    // depends on action type
+  }
+
+  return true;
+});
+
+module.exports = AppStore;
