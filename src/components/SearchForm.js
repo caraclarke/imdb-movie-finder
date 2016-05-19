@@ -12,6 +12,7 @@ var SearchForm = React.createClass({
     }
 
     AppActions.searchMovies(movie);
+    $('#movieId').val('');
   },
 
   render: function() {
@@ -21,7 +22,7 @@ var SearchForm = React.createClass({
 
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <input type="text" className="form-control" ref="title" placeholder="Movie Title" />
+            <input id="movieId" type="text" className="form-control" ref="title" placeholder="Movie Title" />
           </div>
 
           <button className="btn btn-primary btn-block">Search Movies</button>

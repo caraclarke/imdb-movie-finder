@@ -19822,6 +19822,7 @@ var SearchForm = React.createClass({displayName: "SearchForm",
     }
 
     AppActions.searchMovies(movie);
+    $('#movieId').val('');
   },
 
   render: function() {
@@ -19831,7 +19832,7 @@ var SearchForm = React.createClass({displayName: "SearchForm",
 
         React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "form-group"}, 
-            React.createElement("input", {type: "text", className: "form-control", ref: "title", placeholder: "Movie Title"})
+            React.createElement("input", {id: "movieId", type: "text", className: "form-control", ref: "title", placeholder: "Movie Title"})
           ), 
 
           React.createElement("button", {className: "btn btn-primary btn-block"}, "Search Movies")
