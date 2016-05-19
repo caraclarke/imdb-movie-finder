@@ -19685,7 +19685,6 @@ var AppActions = {
     })
   },
   receiveMovieResults: function(movies) {
-    console.log(movies);
     AppDispatcher.handleViewAction({
       actionType: AppConstants.RECEIVE_MOVIE_RESULTS,
       movies: movies
@@ -19703,8 +19702,7 @@ var SearchForm = require('./SearchForm');
 
 function getAppState(){
 	return {
-	//	movies: AppStore.getMovieResults()
-    movies: 'face'
+	  movies: AppStore.getMovieResults()
 	}
 }
 
@@ -19722,6 +19720,7 @@ var App = React.createClass({displayName: "App",
   },
 
   render: function() {
+    console.log(this.state.movies);
     return (
       React.createElement("div", null, 
         React.createElement(SearchForm, null)
@@ -19821,6 +19820,15 @@ var _selected = '';
 
 // create appStore variable
 var AppStore = assign({}, EventEmitter.prototype, {
+
+  setMovieResults: function(movies) {
+    _movies = movies;
+  },
+
+  getMovieResults: function() {
+    return _movies;
+  },
+
   emitchange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -19838,6 +19846,11 @@ AppDispatcher.register(function(payload) {
   switch(action.actionType) {
     case AppConstants.SEARCH_MOVIES:
       AppAPI.searchMovies(action.movie);
+      AppStore.emit(CHANGE_EVENT);
+      break;
+    case AppConstants.RECEIVE_MOVIE_RESULTS:
+      // put movies in array
+      AppStore.setMovieResults(action.movies);
       AppStore.emit(CHANGE_EVENT);
       break;
   }

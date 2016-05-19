@@ -11,6 +11,15 @@ var _selected = '';
 
 // create appStore variable
 var AppStore = assign({}, EventEmitter.prototype, {
+
+  setMovieResults: function(movies) {
+    _movies = movies;
+  },
+
+  getMovieResults: function() {
+    return _movies;
+  },
+
   emitchange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -28,6 +37,11 @@ AppDispatcher.register(function(payload) {
   switch(action.actionType) {
     case AppConstants.SEARCH_MOVIES:
       AppAPI.searchMovies(action.movie);
+      AppStore.emit(CHANGE_EVENT);
+      break;
+    case AppConstants.RECEIVE_MOVIE_RESULTS:
+      // put movies in array
+      AppStore.setMovieResults(action.movies);
       AppStore.emit(CHANGE_EVENT);
       break;
   }

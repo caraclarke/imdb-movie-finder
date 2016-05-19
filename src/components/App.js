@@ -5,8 +5,7 @@ var SearchForm = require('./SearchForm');
 
 function getAppState(){
 	return {
-	//	movies: AppStore.getMovieResults()
-    movies: 'face'
+	  movies: AppStore.getMovieResults()
 	}
 }
 
@@ -24,6 +23,7 @@ var App = React.createClass({
   },
 
   render: function() {
+    console.log(this.state.movies);
     return (
       <div>
         <SearchForm />
