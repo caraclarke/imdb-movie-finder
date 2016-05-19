@@ -4,7 +4,6 @@
   "description": "Movie Finder using OMDB API",
   "main": "main.js",
   "scripts": {
-    "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js"
   },
   "repository": {
     "type": "git",
