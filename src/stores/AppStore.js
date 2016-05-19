@@ -14,7 +14,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
   emitchange: function() {
     this.emit(CHANGE_EVENT);
   },
-  addChangeListender: function(cb) {
+  addChangeListener: function(cb) {
     this.on('change', cb);
   },
   removeChangeListener: function(cb) {
@@ -26,8 +26,9 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
-    // switch statement check out which action was called and then do whatever we need to do
-    // depends on action type
+    case AppConstants.SEARCH_MOVIES:
+      AppStore.emit(CHANGE_EVENT);
+      break;
   }
 
   return true;

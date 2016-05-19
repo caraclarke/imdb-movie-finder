@@ -19694,14 +19694,37 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
+// var getAppState = function() {
+//   return (
+//
+//   )
+// }
+
 var App = React.createClass({displayName: "App",
+
+  // getInitialState: function() {
+  //   //return getAppState()
+  // },
+
+  componentDidMount: function() {
+    AppStore.addChangeListener(this._onChange)
+  },
+
+  componentWillUnmount: function() {
+    AppStore.removeChangeListener(this._onChange)
+  },
+
   render: function() {
     return (
       React.createElement("div", null, 
         React.createElement(SearchForm, null)
       )
     );
-  }
+  },
+
+	_onChange: function(){
+		this.setState(getAppState());
+	}
 });
 
 module.exports = App;
@@ -19793,7 +19816,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
   emitchange: function() {
     this.emit(CHANGE_EVENT);
   },
-  addChangeListender: function(cb) {
+  addChangeListener: function(cb) {
     this.on('change', cb);
   },
   removeChangeListener: function(cb) {
@@ -19804,9 +19827,13 @@ var AppStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload) {
   var action = payload.action;
 
+  // switch statement check out which action was called and then do whatever we need to do
+  // depends on action type
   switch(action.actionType) {
-    // switch statement check out which action was called and then do whatever we need to do
-    // depends on action type
+    case AppConstants.SEARCH_MOVIES:
+      console.log(action.movie.title);
+      AppStore.emit(CHANGE_EVENT);
+      break;
   }
 
   return true;
