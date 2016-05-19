@@ -3,12 +3,23 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var SearchForm = React.createClass({
+
+  onSubmit: function(e) {
+    e.preventDefault();
+
+    var movie = {
+      title: this.refs.title.value.trim()
+    }
+
+    AppActions.searchMovies(movie);
+  },
+
   render: function() {
     return (
       <div className="search-form">
         <h1 className="text-center">Search For a Movie</h1>
 
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <input type="text" className="form-control" ref="title" placeholder="Movie Title" />
           </div>
@@ -19,6 +30,7 @@ var SearchForm = React.createClass({
       </div>
     );
   }
+
 });
 
 module.exports = SearchForm;

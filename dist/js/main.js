@@ -19678,7 +19678,12 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
 var AppActions = {
-
+  searchMovies: function(movie) {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.SEARCH_MOVIES,
+      movie: movie
+    })
+  }
 };
 
 module.exports = AppActions;
@@ -19707,12 +19712,23 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var SearchForm = React.createClass({displayName: "SearchForm",
+
+  onSubmit: function(e) {
+    e.preventDefault();
+
+    var movie = {
+      title: this.refs.title.value.trim()
+    }
+
+    AppActions.searchMovies(movie);
+  },
+
   render: function() {
     return (
       React.createElement("div", {className: "search-form"}, 
         React.createElement("h1", {className: "text-center"}, "Search For a Movie"), 
 
-        React.createElement("form", null, 
+        React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "form-group"}, 
             React.createElement("input", {type: "text", className: "form-control", ref: "title", placeholder: "Movie Title"})
           ), 
@@ -19723,6 +19739,7 @@ var SearchForm = React.createClass({displayName: "SearchForm",
       )
     );
   }
+
 });
 
 module.exports = SearchForm;
@@ -19742,7 +19759,7 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'VIEW_ACTION',
       action: action
     }
-    this.dispatche(payload);
+    this.dispatch(payload);
   }
 });
 
